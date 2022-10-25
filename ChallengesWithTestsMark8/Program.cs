@@ -6,9 +6,7 @@ namespace ChallengesWithTestsMark8
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, world!");
-            ChallengesSet02 set = new ChallengesSet02();
-            Console.WriteLine(set.CountOfElementsIsEven(new string[2]));
+            
         }
     }
 }

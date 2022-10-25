@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection.Metadata.Ecma335;
 
 namespace ChallengesWithTestsMark8
 {
@@ -14,46 +15,86 @@ namespace ChallengesWithTestsMark8
             return false;
         }
 
-        //Stopped here as I realized I was getting too far ahead
-
         public bool IsSumOfOddsOdd(IEnumerable<int> numbers)
         {
-            throw new NotImplementedException();
+            if (numbers == null) return false;
+            int sum = 0;
+            foreach(int num in numbers)
+            {
+                if (num % 2 != 0) sum += num;
+            }
+            return sum % 2 != 0;
         }
 
         public bool PasswordContainsUpperLowerAndNumber(string password)
         {
-            throw new NotImplementedException();
+            bool hasLower = false;
+            bool hasUpper = false;
+            bool hasNumber = false;
+
+            var characters = password;
+            foreach(char ch in characters)
+            {
+                if (char.IsLetter(ch))
+                {
+					if (!hasLower && char.IsLower(ch)) hasLower = true;
+					else if (!hasUpper && char.IsUpper(ch)) hasUpper = true;
+				}
+                
+                else if (!hasNumber && char.IsNumber(ch)) hasNumber = true;
+            }
+
+            return hasLower == true && hasUpper == true && hasNumber == true;
         }
 
         public char GetFirstLetterOfString(string val)
         {
-            throw new NotImplementedException();
+            return val[0];
+
         }
 
         public char GetLastLetterOfString(string val)
         {
-            throw new NotImplementedException();
-        }
+			return val[val.Length - 1];
+		}
 
         public decimal Divide(decimal dividend, decimal divisor)
         {
-            throw new NotImplementedException();
+            if (divisor == 0) return 0;
+            return dividend / divisor;
         }
 
         public int LastMinusFirst(int[] nums)
         {
-            throw new NotImplementedException();
+            return nums[nums.Length - 1] - nums[0];
         }
 
         public int[] GetOddsBelow100()
         {
-            throw new NotImplementedException();
+            List<int> oddNumbers = new List<int>();
+
+            for (int i = 0; i < 100; i++)
+            {
+                if (i % 2 != 0) oddNumbers.Add(i);
+            }
+            return oddNumbers.ToArray();
         }
 
         public void ChangeAllElementsToUppercase(string[] words)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < words.Length; i++)
+            {
+                string currentWord = words[i];
+                string newWord = "";
+
+                for (int l = 0; l < currentWord.Length; l++)
+                {
+                    if (char.IsLetter(currentWord[l])) newWord += currentWord[l].ToString().ToUpper();
+                    else newWord += currentWord[l];
+				}
+                words[i] = newWord;
+
+			}
         }
     }
 }
